@@ -8,11 +8,29 @@ import userModel from './model/user.js'
 import User from './model/user.js';
 app.use(express.json());
 app.use(cors());
+const mongourl=process.env.MONGODB_URI; 
+try{
+  mongoose.connect(mongourl,{
+    useNewUrlParser: true,
+  })
+  if(mongoose.connection.readyState==0){
+    console.log("Mongodb disconnected");
+  }
+  if(mongoose.connection.readyState==1){
+    console.log("Mongodb connected");
+  }
+  if(mongoose.connection.readyState==2){
+    console.log("Mongodb connecting");
+  }
+  if(mongoose.connection.readyState==3){
+    console.log("Mongodb disconnecting");
+  }
+}catch(err){
+  console.log(err);
+  console.log("Mongodn Connection Error");
+}
 
-const mongourl=process.env.MONGODB_URI;
-mongoose.connect(mongourl,{
-  useNewUrlParser: true,
-})
+
 const port = 8080;
 
 app.post('/insert', async(req, res) => {
@@ -29,7 +47,7 @@ app.post('/insert', async(req, res) => {
     )
     await user.save()
     console.log("saved");
-    res.send("done")
+     res.json("done")
   }catch (err){
     console.log(err);
   }

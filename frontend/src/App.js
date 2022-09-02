@@ -11,7 +11,6 @@ function App() {
   useEffect(()=> {
     Axios.get("http://localhost:8080/read").then((response) =>{
       setUserList(response.data);
-      // setUserList
     })
   })
 
@@ -22,8 +21,8 @@ function App() {
       address: address})
   }
   return(
-    <div>
-      <h1>API</h1>
+    <div className='app'>
+      <h1>API INTEGRATION</h1>
       <label>ID</label><input 
         type="number" 
           onChange={(event) => {
@@ -45,10 +44,11 @@ function App() {
       /><br/>
       <input type="submit" onClick={addtodb}></input>
       <div>
-        {userList.map((val, key) => {
+      <p>User List</p>
+      {userList.map((val, key) => {
           return(
             <div>
-              <p>{val.id}" "{val.name}" "{val.address}</p>
+              <p>{val.id} {val.name} {val.address}</p>
             </div> 
           )
         })}

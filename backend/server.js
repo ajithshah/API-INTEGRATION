@@ -7,7 +7,7 @@ import User from './model/user.js';
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb+srv://api:api@cluster0.lkjikrn.mongodb.net/?retryWrites=true&w=majority",{
+mongoose.connect("mongodb+srv://api:api@cluster0.lkjikrn.mongodb.net/userdata?retryWrites=true&w=majority",{
   useNewUrlParser: true,
 })
 const port = 8080;

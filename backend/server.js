@@ -1,13 +1,16 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config()
 const app = express()
 import userModel from './model/user.js'
 import User from './model/user.js';
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb+srv://api:api@cluster0.lkjikrn.mongodb.net/userdata?retryWrites=true&w=majority",{
+const mongourl=process.env.MONGODB_URI;
+mongoose.connect(mongourl,{
   useNewUrlParser: true,
 })
 const port = 8080;

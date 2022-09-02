@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import './App.css';
+import Button from './components';
 
 function App() {
   const [number, setNumber]= useState("")
@@ -12,13 +13,18 @@ function App() {
     Axios.get("http://localhost:8080/read").then((response) =>{
       setUserList(response.data);
     })
-  })
+  },[])
 
   const addtodb= ()=>{
-    Axios.post("http://localhost:8080/insert", { 
+    const req= { 
       number: number, 
       name: name, 
-      address: address})
+      address: address
+    }
+    console.log(req);
+    Axios.post("http://localhost:8080/insert", req).then((response) => {
+      console.log(response);
+    })
   }
   return(
     <div className='app'>
@@ -53,6 +59,7 @@ function App() {
           )
         })}
       </div>
+      <Button/>
     </div>
   )
 }

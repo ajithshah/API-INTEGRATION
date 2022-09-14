@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import './login.css';
-function Login() {
+import Profile from './Profile';
+
+function Login(props) {
   const [number, setNumber]= useState("")
   const [name, setName]= useState("")
   const [address, setAddress]= useState("")
@@ -19,7 +21,6 @@ function Login() {
       name: name, 
       address: address
     }
-    console.log(req);
     Axios.post("http://localhost:8080/insert", req).then((response) => {
       console.log(response);
     })
@@ -52,12 +53,13 @@ function Login() {
       {userList.map((val, key) => {
           return(
             <div>
-              <p>{val.id} {val.name} {val.address}</p>
+              <p key={key}>{val.id} {val.name} {val.address}</p>
             </div> 
           )
         })}
       </div>
-      <p>{number}</p>
+      <p>{props.name}</p>
+      <Profile name={props.name}/>
     </div>
   )
 }

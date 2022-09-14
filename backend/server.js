@@ -15,8 +15,7 @@ try{
   })
   console.log("Mongodb connected");
 }catch(err){
-  console.log(err);
-  console.log("Mongodn Connection Error");
+  console.log({err:"Mongodb Connection Error"});
 }
 
 
@@ -35,8 +34,8 @@ app.post('/insert', async(req, res) => {
       }
     )
     await user.save()
+    res.send({ title: 'saved' });
     console.log("saved");
-     res.json("done")
   }catch (err){
     console.log(err);
   }
@@ -44,6 +43,20 @@ app.post('/insert', async(req, res) => {
 app.get('/read', async(req, res) => {
   try{  
     User.find({} ,(err, result) => {
+      if(err){
+        res.send(err)
+      }
+      res.send(result)
+    })
+  }catch (err){
+    console.log(err);
+  }
+})
+
+app.get('/delete/:id', async(req, res) => {
+  try{  
+    const {id} = req.params;
+    User.deleteOne({id} ,(err, result) => {
       if(err){
         res.send(err)
       }

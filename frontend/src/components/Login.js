@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import './login.css';
-import Profile from './Profile';
 
 function Login(props) {
   const [number, setNumber]= useState("")
@@ -53,13 +52,11 @@ function Login(props) {
       {userList.map((val, key) => {
           return(
             <div>
-              <p key={key}>{val.id} {val.name} {val.address}</p>
+              <p key={key}>{val.id} {val.name} {val.address} <button>Delete</button></p>
             </div> 
           )
         })}
       </div>
-      <p>{props.name}</p>
-      <Profile name={props.name}/>
     </div>
   )
 }

@@ -13,18 +13,7 @@ try{
   mongoose.connect(mongourl,{
     useNewUrlParser: true,
   })
-  if(mongoose.connection.readyState==0){
-    console.log("Mongodb disconnected");
-  }
-  if(mongoose.connection.readyState==1){
-    console.log("Mongodb connected");
-  }
-  if(mongoose.connection.readyState==2){
-    console.log("Mongodb connecting");
-  }
-  if(mongoose.connection.readyState==3){
-    console.log("Mongodb disconnecting");
-  }
+  console.log("Mongodb connected");
 }catch(err){
   console.log(err);
   console.log("Mongodn Connection Error");

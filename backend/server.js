@@ -40,6 +40,7 @@ app.post('/insert', async(req, res) => {
     console.log(err);
   }
 })
+
 app.get('/read', async(req, res) => {
   try{  
     User.find({} ,(err, result) => {
